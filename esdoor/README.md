@@ -1,62 +1,49 @@
-# Esdoor – Kapı Süreç Dijitalleşme (M0)
+## 🎉 M0.0 – Core Infrastructure Ready
 
-Teklif → Sözleşme → Ölçü → İş Emri → PDF üretimi zincirini uçtan uca dijitalleştirmeyi hedefleyen backend.
+This release represents the **first milestone (M0)** of the Esdoor digital transformation project.  
+Goal: Establish the backend foundation for the workflow chain: Quote → Contract → Measurement → Work Order → PDF.
 
-## Teknolojiler
-- Java 17, Spring Boot 3.3
-- Spring Web, Data JPA, Validation, Security
-- PostgreSQL + Flyway (default), H2 (profil), Swagger UI
-- Dockerfile + docker-compose (dev orkestrasyonu)
+---
 
-## Hızlı Başlangıç
+### ✨ Features
+- Project scaffold with **Spring Boot 3.3 & Java 17**  
+- **Maven** build + Spring Boot Maven Plugin (executable JAR)  
+- Database profiles: **PostgreSQL (default)** & **H2 (test/dev profile)**  
+- **Flyway migration** with initial schema (customers, users, roles, user_roles)  
+- **Customer entity, repository, and REST controller**  
+- **Swagger UI** integration → `http://localhost:8080/swagger-ui/index.html`  
+- **Dockerfile + docker-compose** for PostgreSQL + App orchestration  
+- Clean repository setup: `.gitignore`, `.gitattributes`, `README.md`  
 
-### Seçenek A — Maven (local)
+---
+
+### 🛠️ How to Run
+
+#### Option A – Local Maven
 ```bash
 mvn clean package -DskipTests
 java -jar target/esdoor-0.0.1-SNAPSHOT.jar
-# Swagger: http://localhost:8080/swagger-ui/index.html
 ```
-### Seçenek B — H2 profili (DBsız hızlı deneme)
+
+#### Option B – H2 (Quick test without Docker)
 ```bash
-mvn clean package -DskipTests
 java -jar target/esdoor-0.0.1-SNAPSHOT.jar --spring.profiles.active=h2
-# H2 Console: http://localhost:8080/h2-console
-# JDBC URL: jdbc:h2:mem:esdoordb  | user: sa  | pass: (boş)
 ```
-### Seçenek C — Docker Compose (PostgreSQL + App)
-Donanım sanallaştırma gerekir. (WSL2/VT-x yoksa bu adımı atla.)
+
+#### Option C – Docker Compose
 ```bash
 docker compose up -d --build
-# Uygulama: http://localhost:8080
-# Swagger:  http://localhost:8080/swagger-ui/index.html
 ```
-### Profiller
 
-default : Local PostgreSQL (application.properties)
+---
 
-docker : Docker Compose PostgreSQL (application-docker.properties)
+### 📌 Roadmap
+- **M1** – Quote Module (templates, PDF generation)  
+- **M2** – Contract Module  
+- **M3** – Measurement Module  
+- **M4** – Work Order & Production Module  
 
-h2 : In-memory H2 (application-h2.properties)
+---
 
-### REST Örnekleri
-# Listele
-curl http://localhost:8080/api/customers
-
-# Ekle
-curl -X POST http://localhost:8080/api/customers \
-  -H "Content-Type: application/json" \
-  -d '{"code":"C-0001","name":"Doğanlar Kereste","taxNumber":"1234567890","phone":"0500 000 00 00","email":"info@esdoor.com"}'
-
-### 📌Yol Haritası
-
-# M0 – Temel Altyapı
-
-# M1 – Teklif Modülü (şablon, PDF)
-
-# M2 – Sözleşme
-
-# M3 – Ölçü
-
-# M4 – İş Emri & Üretim
-
-
+👉 This milestone lays the **foundation for all upcoming phases**.  
+Profiles, migrations, API documentation, and packaging are ready to scale.
