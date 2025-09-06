@@ -15,21 +15,21 @@ Teklif → Sözleşme → Ölçü → İş Emri → PDF üretimi zincirini uçta
 mvn clean package -DskipTests
 java -jar target/esdoor-0.0.1-SNAPSHOT.jar
 # Swagger: http://localhost:8080/swagger-ui/index.html
-
+```
 ### Seçenek B — H2 profili (DBsız hızlı deneme)
 ```bash
 mvn clean package -DskipTests
 java -jar target/esdoor-0.0.1-SNAPSHOT.jar --spring.profiles.active=h2
 # H2 Console: http://localhost:8080/h2-console
 # JDBC URL: jdbc:h2:mem:esdoordb  | user: sa  | pass: (boş)
-
+```
 ### Seçenek C — Docker Compose (PostgreSQL + App)
 Donanım sanallaştırma gerekir. (WSL2/VT-x yoksa bu adımı atla.)
 ```bash
 docker compose up -d --build
 # Uygulama: http://localhost:8080
 # Swagger:  http://localhost:8080/swagger-ui/index.html
-
+```
 ### Profiller
 
 default : Local PostgreSQL (application.properties)
@@ -47,7 +47,7 @@ curl -X POST http://localhost:8080/api/customers \
   -H "Content-Type: application/json" \
   -d '{"code":"C-0001","name":"Doğanlar Kereste","taxNumber":"1234567890","phone":"0500 000 00 00","email":"info@esdoor.com"}'
 
-### Yol Haritası
+### 📌Yol Haritası
 
 # M0 – Temel Altyapı
 
@@ -58,4 +58,5 @@ curl -X POST http://localhost:8080/api/customers \
 # M3 – Ölçü
 
 # M4 – İş Emri & Üretim
+
 
