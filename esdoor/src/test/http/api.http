@@ -1,0 +1,14 @@
+### Liste
+GET http://localhost:8080/api/customers
+
+### Ekle
+POST http://localhost:8080/api/customers
+Content-Type: application/json
+
+{
+  "code": "C-0001",
+  "name": "Doğanlar Kereste",
+  "taxNumber": "1234567890",
+  "phone": "0500 000 00 00",
+  "email": "info@esdoor.com"
+}

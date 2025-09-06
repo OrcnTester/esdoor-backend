@@ -1,0 +1,35 @@
+
+## `docker-compose.yml` (kök)
+  ```yaml
+services:
+  postgres:
+    image: postgres:16
+    container_name: esdoor-pg
+    environment:
+      POSTGRES_DB: esdoor
+      POSTGRES_USER: esdoor
+      POSTGRES_PASSWORD: dev_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - esdoor_pg_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: esdoor-app
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/esdoor
+      SPRING_DATASOURCE_USERNAME: esdoor
+      SPRING_DATASOURCE_PASSWORD: dev_password
+    depends_on:
+      - postgres
+    restart: unless-stopped
+
+volumes:
+  esdoor_pg_data:
